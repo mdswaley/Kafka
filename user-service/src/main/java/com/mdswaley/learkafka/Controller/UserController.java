@@ -2,6 +2,7 @@ package com.mdswaley.learkafka.Controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
+    @Value("${kafka.topic.user-random-topic}")
+    private String KAFKA_USER_RANDOM_TOPIC;
+
 //    KafkaTemplate is a producer-side utility in Spring Kafka
 //    Its job = send messages to Kafka topic
 //    Flow:
@@ -27,7 +31,11 @@ public class UserController {
 
     @PostMapping("/{message}")
     public ResponseEntity<String> sendMessage(@PathVariable String message){
-        kafkaTemplate.send("user-random-topic", message);
+
+        for (int i=0;i<1000;i++){
+            kafkaTemplate.send(KAFKA_USER_RANDOM_TOPIC,""+i%2, message + i);
+        }
+//        kafkaTemplate.send("user-random-topic", message);
         return ResponseEntity.ok("message queued.");
     }
 }
