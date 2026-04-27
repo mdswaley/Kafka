@@ -1,6 +1,7 @@
 package com.mdswaley.learkafka.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,5 +16,10 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic newTopic(){
         return new NewTopic(KAFKA_USER_RANDOM_TOPIC, 3, (short) 1);
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 }
