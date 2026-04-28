@@ -1,12 +1,9 @@
 package com.mdswaley.learkafka.notification_service.Consumer;
 
-import com.mdswaley.learkafka.notification_service.event.UserCreatedEvent;
+import com.mdswaley.learkafka.user_service.event.UserCreatedEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-
-import java.security.Key;
 
 @Service
 @Slf4j

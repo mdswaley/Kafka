@@ -1,4 +1,4 @@
-package com.mdswaley.learkafka.notification_service.event;
+package com.mdswaley.learkafka.user_service.event;
 
 import lombok.Data;
 
