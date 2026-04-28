@@ -1,7 +1,10 @@
 spring:
+  application:
+    name: notification-service
+
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: ${spring-application.name}
+      group-id: ${spring.application.name}
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
