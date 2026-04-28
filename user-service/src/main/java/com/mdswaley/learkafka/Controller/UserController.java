@@ -18,7 +18,7 @@ public class UserController {
     @Value("${kafka.topic.user-random-topic}")
     private String KAFKA_USER_RANDOM_TOPIC;
 
-    private UserService userService;
+    private final UserService userService;
 
 //    KafkaTemplate is a producer-side utility in Spring Kafka
 //    Its job = send messages to Kafka topic
