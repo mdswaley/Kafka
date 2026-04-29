@@ -8,4 +8,5 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.LongSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      acks: all
+      acks: all   # Ensures the message is acknowledged only after all in-sync replicas have received it (highest durability, safest but slightly slower)
+      retries: 3  # Number of times the producer will retry sending a message if it fails before giving up
