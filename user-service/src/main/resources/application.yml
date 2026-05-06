@@ -7,6 +7,10 @@ spring:
     bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.LongSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       acks: all   # Ensures the message is acknowledged only after all in-sync replicas have received it (highest durability, safest but slightly slower)
       retries: 3  # Number of times the producer will retry sending a message if it fails before giving up
+      properties:
+        schema:
+          registry:
+            url: "http://127.0.0.1:8081"
